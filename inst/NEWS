@@ -1,0 +1,9 @@
+* quantro version 0.99.0 
+	- Submit package to Bioconductor to be reviewed 
+* quantro version 0.99.1
+	- Updated the description to be more descriptive
+	- Added biocViews, unit tests, runnable examples for methods
+	- Updated coding style to match BioC Guidelines
+	- Styled the vignette using the BiocStyle Bioconductor package
+	- Added \tableofcontents to vignette and numbered sections
+	- Used \donttest to quantroPlot man page

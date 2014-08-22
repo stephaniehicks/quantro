@@ -1,0 +1,80 @@
+%% This BibTeX bibliography file was created using BibDesk.
+%% http://bibdesk.sourceforge.net/
+
+
+%% Created for Stephanie Hicks at 2014-08-21 13:46:26 -0400 
+
+
+%% Saved with string encoding Unicode (UTF-8) 
+
+
+
+@article{Aryee2014,
+	Abstract = {MOTIVATION: The recently released Infinium HumanMethylation450 array (the '450k' array) provides a high-throughput assay to quantify DNA methylation (DNAm) at ∼450 000 loci across a range of genomic features. Although less comprehensive than high-throughput sequencing-based techniques, this product is more cost-effective and promises to be the most widely used DNAm high-throughput measurement technology over the next several years.
+RESULTS: Here we describe a suite of computational tools that incorporate state-of-the-art statistical techniques for the analysis of DNAm data. The software is structured to easily adapt to future versions of the technology. We include methods for preprocessing, quality assessment and detection of differentially methylated regions from the kilobase to the megabase scale. We show how our software provides a powerful and flexible development platform for future methods. We also illustrate how our methods empower the technology to make discoveries previously thought to be possible only with sequencing-based methods.
+AVAILABILITY AND IMPLEMENTATION: http://bioconductor.org/packages/release/bioc/html/minfi.html.
+CONTACT: khansen@jhsph.edu; rafa@jimmy.harvard.edu
+SUPPLEMENTARY INFORMATION: Supplementary data are available at Bioinformatics online.},
+	Author = {Aryee, Martin J and Jaffe, Andrew E and Corrada-Bravo, Hector and Ladd-Acosta, Christine and Feinberg, Andrew P and Hansen, Kasper D and Irizarry, Rafael A},
+	Date-Added = {2014-08-21 16:38:10 +0000},
+	Date-Modified = {2014-08-21 16:38:40 +0000},
+	Doi = {10.1093/bioinformatics/btu049},
+	Journal = {Bioinformatics},
+	Journal-Full = {Bioinformatics (Oxford, England)},
+	Mesh = {Aged; Algorithms; Colonic Neoplasms; DNA Methylation; Genome; High-Throughput Nucleotide Sequencing; Humans; Oligonucleotide Array Sequence Analysis; Polymorphism, Single Nucleotide; Software},
+	Month = {May},
+	Number = {10},
+	Pages = {1363-9},
+	Pmc = {PMC4016708},
+	Pmid = {24478339},
+	Pst = {ppublish},
+	Title = {Minfi: a flexible and comprehensive Bioconductor package for the analysis of Infinium DNA methylation microarrays},
+	Volume = {30},
+	Year = {2014},
+	Bdsk-Url-1 = {http://dx.doi.org/10.1093/bioinformatics/btu049}}
+
+@manual{JaffeFlowSorted,
+	Author = {Jaffe, A J and Kaminsky, Z A},
+	Date-Added = {2014-08-21 16:35:37 +0000},
+	Date-Modified = {2014-08-21 16:36:24 +0000},
+	Edition = {R package version 1.0.0},
+	Title = {FlowSorted.DLPFC.450k: Illumina HumanMethylation data on sorted frontal cortex cell populations}}
+
+@article{Irizarry2003,
+	Abstract = {In this paper we report exploratory analyses of high-density oligonucleotide array data from the Affymetrix GeneChip system with the objective of improving upon currently used measures of gene expression. Our analyses make use of three data sets: a small experimental study consisting of five MGU74A mouse GeneChip arrays, part of the data from an extensive spike-in study conducted by Gene Logic and Wyeth's Genetics Institute involving 95 HG-U95A human GeneChip arrays; and part of a dilution study conducted by Gene Logic involving 75 HG-U95A GeneChip arrays. We display some familiar features of the perfect match and mismatch probe (PM and MM) values of these data, and examine the variance-mean relationship with probe-level data from probes believed to be defective, and so delivering noise only. We explain why we need to normalize the arrays to one another using probe level intensities. We then examine the behavior of the PM and MM using spike-in data and assess three commonly used summary measures: Affymetrix's (i) average difference (AvDiff) and (ii) MAS 5.0 signal, and (iii) the Li and Wong multiplicative model-based expression index (MBEI). The exploratory data analyses of the probe level data motivate a new summary measure that is a robust multi-array average (RMA) of background-adjusted, normalized, and log-transformed PM values. We evaluate the four expression summary measures using the dilution study data, assessing their behavior in terms of bias, variance and (for MBEI and RMA) model fit. Finally, we evaluate the algorithms in terms of their ability to detect known levels of differential expression using the spike-in data. We conclude that there is no obvious downside to using RMA and attaching a standard error (SE) to this quantity using a linear model which removes probe-specific affinities.},
+	Author = {Irizarry, Rafael A and Hobbs, Bridget and Collin, Francois and Beazer-Barclay, Yasmin D and Antonellis, Kristen J and Scherf, Uwe and Speed, Terence P},
+	Date-Added = {2014-08-21 16:32:31 +0000},
+	Date-Modified = {2014-08-21 16:34:24 +0000},
+	Doi = {10.1093/biostatistics/4.2.249},
+	Journal = {Biostatistics},
+	Journal-Full = {Biostatistics (Oxford, England)},
+	Mesh = {Algorithms; Animals; DNA Probes; Data Interpretation, Statistical; Gene Expression Profiling; Humans; Linear Models; Mice; Normal Distribution; Oligonucleotide Array Sequence Analysis; Reproducibility of Results; Statistics, Nonparametric},
+	Month = {Apr},
+	Number = {2},
+	Pages = {249-64},
+	Pmid = {12925520},
+	Pst = {ppublish},
+	Title = {Exploration, normalization, and summaries of high density oligonucleotide array probe level data},
+	Volume = {4},
+	Year = {2003},
+	Bdsk-Url-1 = {http://dx.doi.org/10.1093/biostatistics/4.2.249}}
+
+@article{Bolstad2003,
+	Abstract = {MOTIVATION: When running experiments that involve multiple high density oligonucleotide arrays, it is important to remove sources of variation between arrays of non-biological origin. Normalization is a process for reducing this variation. It is common to see non-linear relations between arrays and the standard normalization provided by Affymetrix does not perform well in these situations.
+RESULTS: We present three methods of performing normalization at the probe intensity level. These methods are called complete data methods because they make use of data from all arrays in an experiment to form the normalizing relation. These algorithms are compared to two methods that make use of a baseline array: a one number scaling based algorithm and a method that uses a non-linear normalizing relation by comparing the variability and bias of an expression measure. Two publicly available datasets are used to carry out the comparisons. The simplest and quickest complete data method is found to perform favorably.
+AVAILABILITY: Software implementing all three of the complete data normalization methods is available as part of the R package Affy, which is a part of the Bioconductor project http://www.bioconductor.org.
+SUPPLEMENTARY INFORMATION: Additional figures may be found at http://www.stat.berkeley.edu/~bolstad/normalize/index.html},
+	Author = {Bolstad, B M and Irizarry, R A and Astrand, M and Speed, T P},
+	Date-Added = {2014-08-21 16:32:13 +0000},
+	Date-Modified = {2014-08-21 16:34:20 +0000},
+	Journal = {Bioinformatics},
+	Journal-Full = {Bioinformatics (Oxford, England)},
+	Mesh = {Algorithms; Calibration; Models, Genetic; Molecular Probes; Nonlinear Dynamics; Oligonucleotide Array Sequence Analysis; Quality Control; Sequence Analysis, DNA; Stochastic Processes},
+	Month = {Jan},
+	Number = {2},
+	Pages = {185-93},
+	Pmid = {12538238},
+	Pst = {ppublish},
+	Title = {A comparison of normalization methods for high density oligonucleotide array data based on variance and bias},
+	Volume = {19},
+	Year = {2003}}
