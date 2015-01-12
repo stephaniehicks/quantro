@@ -153,6 +153,7 @@ matboxplot <- function (object, groupFactor, col = NULL, las = 3, ...){
 #' library(doParallel)
 #' registerDoParallel(cores=4)
 #' qtest <- quantro(p, pd$CellType, B = 100)
+#' stopImplicitCluster()
 #' quantroPlot(qtest)
 #' }
 quantroPlot <- function(object, savePlot = FALSE, xLab = NULL, 
