@@ -1,0 +1,13 @@
+\contentsline {section}{\numberline {1}Introduction}{1}{section.1}
+\contentsline {section}{\numberline {2}Getting Started}{2}{section.2}
+\contentsline {section}{\numberline {3}Data}{2}{section.3}
+\contentsline {subsection}{\numberline {3.1}flowSorted Data Example}{2}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Plot distributions}{3}{subsection.3.2}
+\contentsline {section}{\numberline {4}Using the \texttt {quantro()} function}{5}{section.4}
+\contentsline {subsection}{\numberline {4.1}Input for \texttt {quantro()}}{5}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Running \texttt {quantro()}}{5}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}eSets}{7}{subsection.4.3}
+\contentsline {subsection}{\numberline {4.4}Output from \texttt {quantro()}}{7}{subsection.4.4}
+\contentsline {section}{\numberline {5}Assessing the statistical significance}{8}{section.5}
+\contentsline {section}{\numberline {6}Visualizing the statistical significance from permutation tests}{8}{section.6}
+\contentsline {section}{\numberline {7}SessionInfo}{9}{section.7}

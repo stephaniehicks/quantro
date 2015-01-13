@@ -272,7 +272,6 @@ machine with 4 cores.
 library(doParallel)
 registerDoParallel(cores=4)
 qtestPerm <- quantro(p, groupFactor = pd$CellType, B = 1000)
-stopImplicitCluster()
 qtestPerm
 @
 
