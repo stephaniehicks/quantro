@@ -1,7 +1,7 @@
 Package: quantro
 Title: A test for when to use quantile normalization
-Version: 0.99.1
-Date: 2014-08-22
+Version: 1.1.2
+Date: 2015-02-16
 Author: Stephanie Hicks and Rafael Irizarry
 Maintainer: Stephanie Hicks <shicks@jimmy.harvard.edu>
 Imports:
@@ -11,7 +11,8 @@ Imports:
     foreach,
     iterators,
     ggplot2,
-    methods
+    methods,
+    RColorBrewer
 Depends:
     R (>= 3.1.1)
 Suggests:

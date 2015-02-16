@@ -52,9 +52,9 @@
 
 \usepackage{alltt}
 
-\RequirePackage{/Library/Frameworks/R.framework/Versions/3.1/Resources/library/BiocStyle/sty/Bioconductor}
+\RequirePackage{/Library/Frameworks/R.framework/Versions/3.1/Resources/library/BiocStyle/resources/latex/Bioconductor}
 
-\AtBeginDocument{\bibliographystyle{/Library/Frameworks/R.framework/Versions/3.1/Resources/library/BiocStyle/sty/unsrturl}}
+\AtBeginDocument{\bibliographystyle{/Library/Frameworks/R.framework/Versions/3.1/Resources/library/BiocStyle/resources/latex/unsrturl}}
 
 
 \setlength{\parskip}{1\baselineskip}
@@ -64,7 +64,7 @@
 \author{Stephanie C. Hicks \texttt{shicks@jimmy.harvard.edu} \and
 Rafael A. Irizarry \texttt{rafa@jimmy.harvard.edu} }
 
-\date{Modified: August 22, 2014.  Compiled: \today}
+\date{Modified: February 16, 2015.  Compiled: \today}
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \begin{document}
 
@@ -181,12 +181,12 @@ We use an offset of 100 as this is the default used by Illumina.
 \end{alltt}
 \begin{verbatim}
 ##        Sample_Name SampleID CellType Sentrix.Barcode Sample.Section    diag    sex
-## 813_N        813_N      813 NeuN_pos       7.766e+09         R02C01 Control Female
-## 1740_N      1740_N     1740 NeuN_pos       7.766e+09         R02C02 Control Female
-## 1740_G      1740_G     1740 NeuN_neg       7.766e+09         R04C01 Control Female
-## 1228_G      1228_G     1228 NeuN_neg       7.766e+09         R04C02 Control   Male
-## 813_G        813_G      813 NeuN_neg       7.766e+09         R06C01 Control Female
-## 1228_N      1228_N     1228 NeuN_pos       7.766e+09         R06C02 Control   Male
+## 813_N        813_N      813 NeuN_pos      7766130090         R02C01 Control Female
+## 1740_N      1740_N     1740 NeuN_pos      7766130090         R02C02 Control Female
+## 1740_G      1740_G     1740 NeuN_neg      7766130090         R04C01 Control Female
+## 1228_G      1228_G     1228 NeuN_neg      7766130090         R04C02 Control   Male
+## 813_G        813_G      813 NeuN_neg      7766130090         R06C01 Control Female
+## 1228_N      1228_N     1228 NeuN_pos      7766130090         R06C02 Control   Male
 ##        ethnicity age PMI
 ## 813_N  Caucasian  30  14
 ## 1740_N   African  13  17
@@ -214,20 +214,23 @@ samples of interest: \texttt{matdensity()} and \texttt{matboxplot()}.
 \texttt{matdensity()} computes the density for each sample (columns) and 
 uses the \texttt{matplot()} function to plot all the densities. 
 \texttt{matboxplot()} orders and colors the samples by a group level variable. 
+These two functions use the \texttt{RColorBrewer} package and the brewer 
+palettes can be changed using the arguments \texttt{brewer.n} and 
+\texttt{brewer.name}. 
 
 The distributions of the two groups of cellular populations are shown here. 
-The \verb+NeuN_neg+ samples are colored in red and the \verb+NeuN_pos+ are 
-colored in green. 
+The \verb+NeuN_neg+ samples are colored in green and the \verb+NeuN_pos+ are 
+colored in red.  
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{matdensity}\hlstd{(p,} \hlkwc{groupFactor} \hlstd{= pd}\hlopt{$}\hlstd{CellType,} \hlkwc{col} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{2}\hlstd{,}\hlnum{3}\hlstd{),} \hlkwc{xlab} \hlstd{=} \hlstr{" "}\hlstd{,}
-           \hlkwc{ylab} \hlstd{=} \hlstr{"density"}\hlstd{,} \hlkwc{main} \hlstd{=} \hlstr{"Beta Values"}\hlstd{)}
-\hlkwd{legend}\hlstd{(}\hlstr{'top'}\hlstd{,} \hlkwd{c}\hlstd{(}\hlstr{"NeuN_neg"}\hlstd{,} \hlstr{"NeuN_pos"}\hlstd{),} \hlkwc{col} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{2}\hlstd{,}\hlnum{3}\hlstd{),} \hlkwc{lty}\hlstd{=} \hlnum{1}\hlstd{,} \hlkwc{lwd} \hlstd{=} \hlnum{3}\hlstd{)}
+\hlkwd{matdensity}\hlstd{(p,} \hlkwc{groupFactor} \hlstd{= pd}\hlopt{$}\hlstd{CellType,} \hlkwc{xlab} \hlstd{=} \hlstr{" "}\hlstd{,} \hlkwc{ylab} \hlstd{=} \hlstr{"density"}\hlstd{,}
+           \hlkwc{main} \hlstd{=} \hlstr{"Beta Values"}\hlstd{,} \hlkwc{brewer.n} \hlstd{=} \hlnum{8}\hlstd{,} \hlkwc{brewer.name} \hlstd{=} \hlstr{"Dark2"}\hlstd{)}
+\hlkwd{legend}\hlstd{(}\hlstr{'top'}\hlstd{,} \hlkwd{c}\hlstd{(}\hlstr{"NeuN_neg"}\hlstd{,} \hlstr{"NeuN_pos"}\hlstd{),} \hlkwc{col} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,} \hlnum{2}\hlstd{),} \hlkwc{lty} \hlstd{=} \hlnum{1}\hlstd{,} \hlkwc{lwd} \hlstd{=} \hlnum{3}\hlstd{)}
 \end{alltt}
 \end{kframe}
-\includegraphics[width=\maxwidth]{figure/plot-distributions-density} 
+\includegraphics[width=\maxwidth]{figure/plot-distributions-density-1} 
 
 \end{knitrout}
 
@@ -235,11 +238,10 @@ colored in green.
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{matboxplot}\hlstd{(p,} \hlkwc{groupFactor} \hlstd{= pd}\hlopt{$}\hlstd{CellType,} \hlkwc{col} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{2}\hlstd{,}\hlnum{3}\hlstd{),} \hlkwc{xaxt} \hlstd{=} \hlstr{"n"}\hlstd{,}
-           \hlkwc{main} \hlstd{=} \hlstr{"Beta Values"}\hlstd{)}
+\hlkwd{matboxplot}\hlstd{(p,} \hlkwc{groupFactor} \hlstd{= pd}\hlopt{$}\hlstd{CellType,} \hlkwc{xaxt} \hlstd{=} \hlstr{"n"}\hlstd{,} \hlkwc{main} \hlstd{=} \hlstr{"Beta Values"}\hlstd{)}
 \end{alltt}
 \end{kframe}
-\includegraphics[width=\maxwidth]{figure/plot-distributions-boxplot} 
+\includegraphics[width=\maxwidth]{figure/plot-distributions-boxplot-1} 
 
 \end{knitrout}
 
@@ -279,7 +281,7 @@ example.
 \end{alltt}
 
 
-{\ttfamily\noindent\itshape\color{messagecolor}{\#\# [quantro] Average medians of the distributions are not equal across groups.\\\#\# [quantro] Calculating the quantro test statistic.\\\#\# [quantro] No permutation testing performed. Use B > 0 for permutation testing.}}\begin{alltt}
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# [quantro] Average medians of the distributions are \\\#\#\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  not equal across groups.\\\#\# [quantro] Calculating the quantro test statistic.\\\#\# [quantro] No permutation testing performed. \\\#\#\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Use B > 0 for permutation testing.}}\begin{alltt}
 \hlstd{qtest}
 \end{alltt}
 \begin{verbatim}
@@ -329,9 +331,9 @@ found using \texttt{anova}:
 ## Analysis of Variance Table
 ## 
 ## Response: objectMedians
-##             Df Sum Sq Mean Sq F value Pr(>F)  
-## groupFactor  1 0.0069 0.00692    6.73  0.012 *
-## Residuals   56 0.0576 0.00103                 
+##             Df   Sum Sq   Mean Sq F value  Pr(>F)  
+## groupFactor  1 0.006919 0.0069194  6.7327 0.01206 *
+## Residuals   56 0.057553 0.0010277                  
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 \end{verbatim}
@@ -348,7 +350,7 @@ is given by \texttt{quantroStat}:
 \hlkwd{quantroStat}\hlstd{(qtest)}
 \end{alltt}
 \begin{verbatim}
-## [1] 8.807
+## [1] 8.807348
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -372,7 +374,7 @@ such as an \texttt{ExpressionSet} or \texttt{MethylSet}. The
 \end{alltt}
 
 
-{\ttfamily\noindent\itshape\color{messagecolor}{\#\# [quantro] Average medians of the distributions are not equal across groups.\\\#\# [quantro] Calculating the quantro test statistic.\\\#\# [quantro] No permutation testing performed. Use B > 0 for permutation testing.}}\begin{alltt}
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# [quantro] Average medians of the distributions are \\\#\#\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  not equal across groups.\\\#\# [quantro] Calculating the quantro test statistic.\\\#\# [quantro] No permutation testing performed. \\\#\#\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Use B > 0 for permutation testing.}}\begin{alltt}
 \hlstd{qtest}
 \end{alltt}
 \begin{verbatim}
@@ -448,7 +450,7 @@ machine with 4 cores.
 \end{alltt}
 
 
-{\ttfamily\noindent\itshape\color{messagecolor}{\#\# [quantro] Average medians of the distributions are not equal across groups.\\\#\# [quantro] Calculating the quantro test statistic.\\\#\# [quantro] Starting permutation testing.\\\#\# [quantro] Parallelizing using 4 workers/cores (backend: doParallelMC, version: 1.0.8).}}\begin{alltt}
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# [quantro] Average medians of the distributions are \\\#\#\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  not equal across groups.\\\#\# [quantro] Calculating the quantro test statistic.\\\#\# [quantro] Starting permutation testing.\\\#\# [quantro] Parallelizing using 4 workers/cores \\\#\#\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  (backend: doParallelMC, version: 1.0.8).}}\begin{alltt}
 \hlstd{qtestPerm}
 \end{alltt}
 \begin{verbatim}
@@ -458,7 +460,7 @@ machine with 4 cores.
 ##    nSamplesinGroups:  29 29 
 ##    anovaPval:  0.01206 
 ##    quantroStat:  8.80735 
-##    quantroPvalPerm:  0.003
+##    quantroPvalPerm:  0.001
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -481,7 +483,7 @@ a histogram of the null test statistics \texttt{quantroStatPerm} from
 \hlkwd{quantroPlot}\hlstd{(qtestPerm)}
 \end{alltt}
 \end{kframe}
-\includegraphics[width=\maxwidth]{figure/quantro-plot} 
+\includegraphics[width=\maxwidth]{figure/quantro-plot-1} 
 
 \end{knitrout}
 
@@ -513,41 +515,41 @@ binWidth & change the binwidth \\
 \hlkwd{sessionInfo}\hlstd{()}
 \end{alltt}
 \begin{verbatim}
-## R version 3.1.1 (2014-07-10)
-## Platform: x86_64-apple-darwin10.8.0 (64-bit)
+## R version 3.1.2 (2014-10-31)
+## Platform: x86_64-apple-darwin13.4.0 (64-bit)
 ## 
 ## locale:
 ## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
 ## 
 ## attached base packages:
-## [1] parallel  stats     graphics  grDevices utils     datasets  methods   base     
+## [1] stats4    parallel  stats     graphics  grDevices datasets  utils     methods  
+## [9] base     
 ## 
 ## other attached packages:
-##  [1] doParallel_1.0.8      minfi_1.11.11         bumphunter_1.5.4     
-##  [4] locfit_1.5-9.1        iterators_1.0.7       foreach_1.4.2        
-##  [7] Biostrings_2.33.13    XVector_0.5.7         GenomicRanges_1.17.28
-## [10] GenomeInfoDb_1.1.18   IRanges_1.99.24       S4Vectors_0.1.2      
-## [13] lattice_0.20-29       Biobase_2.25.0        BiocGenerics_0.11.4  
-## [16] quantro_0.99.0        knitr_1.6            
+##  [1] doParallel_1.0.8     minfi_1.12.0         bumphunter_1.6.0     locfit_1.5-9.1      
+##  [5] iterators_1.0.7      foreach_1.4.2        Biostrings_2.34.0    XVector_0.6.0       
+##  [9] GenomicRanges_1.18.3 GenomeInfoDb_1.2.3   IRanges_2.0.0        S4Vectors_0.4.0     
+## [13] lattice_0.20-29      Biobase_2.26.0       BiocGenerics_0.12.1  quantro_0.99.2      
+## [17] knitr_1.8           
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] annotate_1.43.5       AnnotationDbi_1.27.9  base64_1.1           
-##  [4] beanplot_1.1          BiocStyle_1.3.9       codetools_0.2-8      
-##  [7] colorspace_1.2-4      compiler_3.1.1        DBI_0.2-7            
+##  [1] annotate_1.44.0       AnnotationDbi_1.28.1  base64_1.1           
+##  [4] beanplot_1.2          BiocStyle_1.4.1       codetools_0.2-9      
+##  [7] colorspace_1.2-4      compiler_3.1.2        DBI_0.3.1            
 ## [10] digest_0.6.4          doRNG_1.6             evaluate_0.5.5       
-## [13] formatR_0.10          genefilter_1.47.6     ggplot2_1.0.0        
-## [16] grid_3.1.1            gtable_0.1.2          highr_0.3            
-## [19] illuminaio_0.7.0      labeling_0.2          limma_3.21.13        
-## [22] MASS_7.3-33           matrixStats_0.10.0    mclust_4.3           
-## [25] multtest_2.21.0       munsell_0.4.2         nlme_3.1-117         
-## [28] nor1mix_1.1-4         pkgmaker_0.22         plyr_1.8.1           
-## [31] preprocessCore_1.27.1 proto_0.3-10          R.methodsS3_1.6.1    
-## [34] RColorBrewer_1.0-5    Rcpp_0.11.2           registry_0.2         
-## [37] reshape_0.8.5         reshape2_1.4          rngtools_1.2.4       
-## [40] RSQLite_0.11.4        scales_0.2.4          siggenes_1.39.0      
-## [43] splines_3.1.1         stats4_3.1.1          stringr_0.6.2        
-## [46] survival_2.37-7       tools_3.1.1           XML_3.98-1.1         
-## [49] xtable_1.7-3          zlibbioc_1.11.1
+## [13] formatR_1.0           genefilter_1.48.1     ggplot2_1.0.0        
+## [16] grid_3.1.2            gtable_0.1.2          highr_0.4            
+## [19] illuminaio_0.8.0      labeling_0.3          limma_3.22.1         
+## [22] MASS_7.3-35           matrixStats_0.10.3    mclust_4.4           
+## [25] multtest_2.22.0       munsell_0.4.2         nlme_3.1-118         
+## [28] nor1mix_1.2-0         pkgmaker_0.22         plyr_1.8.1           
+## [31] preprocessCore_1.28.0 proto_0.3-10          quadprog_1.5-5       
+## [34] R.methodsS3_1.6.1     RColorBrewer_1.0-5    Rcpp_0.11.3          
+## [37] registry_0.2          reshape_0.8.5         reshape2_1.4         
+## [40] rngtools_1.2.4        RSQLite_1.0.0         scales_0.2.4         
+## [43] siggenes_1.40.0       splines_3.1.2         stringr_0.6.2        
+## [46] survival_2.37-7       tools_3.1.2           XML_3.98-1.1         
+## [49] xtable_1.7-4          zlibbioc_1.12.0
 \end{verbatim}
 \end{kframe}
 \end{knitrout}

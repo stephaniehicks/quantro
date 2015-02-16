@@ -10,6 +10,7 @@
 #' @rdname summary
 #' @aliases summary summary,quantro-method
 #' @param object a \code{quantro} object
+#' @param ... other 
 #' 
 #' @examples
 #' library(minfi)
@@ -37,6 +38,7 @@ setMethod("summary", signature(object="quantro"), summary.quantro)
 #' @rdname anova
 #' @aliases anova anova,quantro-method
 #' @param object a \code{quantro} object
+#' @param ... other
 #'
 #' @examples
 #' library(minfi)

@@ -14,7 +14,7 @@
 \author{Stephanie C. Hicks \texttt{shicks@jimmy.harvard.edu} \and
 Rafael A. Irizarry \texttt{rafa@jimmy.harvard.edu} }
 
-\date{Modified: August 22, 2014.  Compiled: \today}
+\date{Modified: January 14, 2015.  Compiled: \today}
 
 
 \begin{document}
@@ -130,21 +130,23 @@ samples of interest: \texttt{matdensity()} and \texttt{matboxplot()}.
 \texttt{matdensity()} computes the density for each sample (columns) and 
 uses the \texttt{matplot()} function to plot all the densities. 
 \texttt{matboxplot()} orders and colors the samples by a group level variable. 
+These two functions use the \texttt{RColorBrewer} package and the brewer 
+palettes can be changed using the arguments \texttt{brewer.n} and 
+\texttt{brewer.name}. 
 
 The distributions of the two groups of cellular populations are shown here. 
-The \verb+NeuN_neg+ samples are colored in red and the \verb+NeuN_pos+ are 
-colored in green. 
+The \verb+NeuN_neg+ samples are colored in green and the \verb+NeuN_pos+ are 
+colored in red.  
 
 <<plot-distributions-density, fig.height=5, fig.width=6>>=
-matdensity(p, groupFactor = pd$CellType, col = c(2,3), xlab = " ", 
-           ylab = "density", main = "Beta Values")
-legend('top', c("NeuN_neg", "NeuN_pos"), col = c(2,3), lty= 1, lwd = 3)
+matdensity(p, groupFactor = pd$CellType, xlab = " ", ylab = "density",
+           main = "Beta Values", brewer.n = 8, brewer.name = "Dark2")
+legend('top', c("NeuN_neg", "NeuN_pos"), col = c(1, 2), lty = 1, lwd = 3)
 @
 
 
 <<plot-distributions-boxplot, fig.height=5, fig.width=6>>=
-matboxplot(p, groupFactor = pd$CellType, col = c(2,3), xaxt = "n", 
-           main = "Beta Values")
+matboxplot(p, groupFactor = pd$CellType, xaxt = "n", main = "Beta Values")
 @
 
 

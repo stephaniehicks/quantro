@@ -7,3 +7,5 @@
 	- Styled the vignette using the BiocStyle Bioconductor package
 	- Added \tableofcontents to vignette and numbered sections
 	- Used \donttest to quantroPlot man page
+* quantro version 1.1.2
+	- Added RColorBrewer dependency for matdensity and matboxplot functions

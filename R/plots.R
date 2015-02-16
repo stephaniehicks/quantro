@@ -13,10 +13,15 @@
 #' that values in \code{groupFactor} be in the same 
 #' order as the columns in \code{object}. 
 #' @param type the type of lines to plot. Default type is line ("l"). 
-#' @param col a numeric of colors to plot each group.
+#' @param brewer.n the number of colors in the palette from the RColorBrewer 
+#' package. Default is 8. 
+#' @param brewer.name the name of the palette from the RColorBrewer package. 
+#' Default is "Dark2". 
 #' @param lty the line type. Default is the solid line. 
 #' @param ... other arguments that can be passed to the 
 #' code{matplot} function. 
+#' 
+#' @import RColorBrewer
 #' 
 #' @return A density plot for each column in \code{object}
 #' 
@@ -26,11 +31,11 @@
 #' data(flowSorted)
 #' p <- getBeta(flowSorted, offset = 100)
 #' pd <- pData(flowSorted)
-#' matdensity(object = p, groupFactor = pd$CellType, col = c(2,3), 
-#' xlab = "beta values", ylab = "density")
-matdensity <- function(object, groupFactor = NULL, col = NULL, type = "l", 
-                       lty = 1, ...){
-    
+#' matdensity(object = p, groupFactor = pd$CellType, xlab = "beta values",
+#' ylab = "density")
+matdensity <- function(object, groupFactor = NULL, type = "l", 
+                       lty = 1, brewer.n = 8, brewer.name = "Dark2", ...){
+   
     if(inherits(object, "eSet")){
         if(is(object, "ExpressionSet")){ object <- exprs(object) }
         if(is(object, "MethylSet")){ object <- getBeta(object, offset = 100) }
@@ -47,22 +52,16 @@ matdensity <- function(object, groupFactor = NULL, col = NULL, type = "l",
     }
     output <- getdensity(object)
 
+    palette(brewer.pal(brewer.n, brewer.name))
+    col = brewer.pal(brewer.n, brewer.name)
     if(!is.null(groupFactor)){
         groupFactor <- as.factor(groupFactor)
-        if(!is.null(col)){
-            col = col[as.integer(groupFactor)]
-        } else {
-            col = seq_len(length(levels(groupFactor)))[as.integer(groupFactor)]
-        }
+        col = col[as.integer(groupFactor)]
     } else { 
-        if(!is.null(col)){
-            col = rep(col, ncol(object))
-        } else {
-            col = rep(1, ncol(object))
-        }
+        col = rep(col, ncol(object))
     }
 
-    matplot(x = output$x, output$densityMat, type = type, col = col, 
+    matplot(x = output$x, output$densityMat, col = col, type = type, 
             lty = lty, ...)
 }
 
@@ -82,7 +81,10 @@ matdensity <- function(object, groupFactor = NULL, col = NULL, type = "l",
 #' group each column in \code{object} belongs to. It is important 
 #' that values in \code{groupFactor} be in the same 
 #' order as the columns in \code{object}.
-#' @param col a numeric of colors to plot each group.
+#' @param brewer.n the number of colors in the palette from the RColorBrewer 
+#' package. Default is 8. 
+#' @param brewer.name the name of the palette from the RColorBrewer package. 
+#' Default is "Dark2". 
 #' @param las a numeric in (0, 1, 2, 3) to orient the axis labels. 
 #' Default is 3 (always vertical). 
 #' @param ... other arguments that can be passed to the 
@@ -97,8 +99,9 @@ matdensity <- function(object, groupFactor = NULL, col = NULL, type = "l",
 #' 
 #' p <- getBeta(flowSorted, offset = 100)
 #' pd <- pData(flowSorted)
-#' matboxplot(object = p, groupFactor = pd$CellType, col = c(2,3))
-matboxplot <- function (object, groupFactor, col = NULL, las = 3, ...){
+#' matboxplot(object = p, groupFactor = pd$CellType)
+matboxplot <- function (object, groupFactor, las = 3, 
+                        brewer.n = 8, brewer.name = "Dark2", ...){
     
     if(inherits(object, "eSet")){
         if(is(object, "ExpressionSet")){ object <- exprs(object) }
@@ -109,14 +112,11 @@ matboxplot <- function (object, groupFactor, col = NULL, las = 3, ...){
     objectordered <- object[, order(groupFactor)]
     groupFactorOrdered <- groupFactor[order(groupFactor)]
 
-    if(is.null(col)){
-        col = seq_len(length(levels(groupFactor)))[as.integer(
-            groupFactorOrdered)]
-    } else {
-        col = col[as.integer(groupFactorOrdered)]
-    }
-    
-    boxplot(objectordered, col = col, las = las, ...)
+    palette(brewer.pal(brewer.n, brewer.name))
+    col = brewer.pal(brewer.n, brewer.name) 
+    col = col[as.integer(groupFactorOrdered)]
+        
+    boxplot(objectordered, las = las, col = col, ...)
 }
 
 
