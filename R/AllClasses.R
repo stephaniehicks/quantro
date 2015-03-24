@@ -28,8 +28,9 @@ setMethod("show", "quantro",
                 noPermutation <- "Use B > 0 for permutation testing."
                 cat("   quantroPvalPerm: ", paste(noPermutation), "\n")
             } else {
-                cat("   quantroPvalPerm: ", paste(object@quantroPvalPerm), 
-                    "\n")  
+                showPval <- ifelse(object@quantroPvalPerm < (1/object@B), 
+                       paste0("< ", 1 / object@B), object@quantroPvalPerm)
+                cat("   quantroPvalPerm: ", paste(showPval), "\n")  
             }
           }
 )

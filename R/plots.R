@@ -176,9 +176,11 @@ quantroPlot <- function(object, savePlot = FALSE, xLab = NULL,
 
     if(is.null(yLab)){ yLab <- "density" }
 
+    newPvalPerm <- ifelse(quantroPvalPerm(object) < (1/object@B), 
+           paste0("< ", 1 / object@B), round(quantroPvalPerm(object),3))
     if(is.null(mainLab)){ mainLab <- paste0(
         "quantroStat = ", round(quantroStat, 3), 
-        ", quantroPvalPerm = ", round(quantroPvalPerm, 3))
+        ", quantroPvalPerm = ", newPvalPerm)
     }
 
     value = NULL

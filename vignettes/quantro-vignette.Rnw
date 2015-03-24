@@ -14,7 +14,7 @@
 \author{Stephanie C. Hicks \texttt{shicks@jimmy.harvard.edu} \and
 Rafael A. Irizarry \texttt{rafa@jimmy.harvard.edu} }
 
-\date{Modified: January 14, 2015.  Compiled: \today}
+\date{Modified: March 24, 2015.  Compiled: \today}
 
 
 \begin{document}
