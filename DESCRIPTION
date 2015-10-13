@@ -1,6 +1,6 @@
 Package: quantro
 Title: A test for when to use quantile normalization
-Version: 1.3.0
+Version: 1.4.0
 Date: 2015-03-31
 Author: Stephanie Hicks and Rafael Irizarry
 Maintainer: Stephanie Hicks <shicks@jimmy.harvard.edu>
