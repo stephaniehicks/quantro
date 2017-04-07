@@ -14,7 +14,7 @@
 \author{Stephanie C. Hicks \texttt{shicks@jimmy.harvard.edu} \and
 Rafael A. Irizarry \texttt{rafa@jimmy.harvard.edu} }
 
-\date{Modified: March 24, 2015.  Compiled: \today}
+\date{Modified: April 7, 2017.  Compiled: \today}
 
 
 \begin{document}
@@ -207,6 +207,7 @@ quantroStat(qtest)
 @
 
 
+
 \subsection{eSets}
 \texttt{quantro()} also can accept objects that inherit \texttt{eSets} 
 such as an \texttt{ExpressionSet} or \texttt{MethylSet}. The 
@@ -217,7 +218,6 @@ is(flowSorted, "MethylSet")
 qtest <- quantro(flowSorted, groupFactor = pData(flowSorted)$CellType)
 qtest 
 @
-
 
 
 
@@ -268,15 +268,14 @@ permutation of the samples, a test statistic is calculated. The proportion
 of test statistics (\texttt{quantroStatPerm}) that are larger than the 
 \texttt{quantroStat} is reported as the \texttt{quantroPvalPerm}. To use 
 the \texttt{foreach} package, we first register a backend, in this case a 
-machine with 4 cores. 
+machine with 1 cores. 
 
 <<quantro-parallel>>=
 library(doParallel)
-registerDoParallel(cores=4)
+registerDoParallel(cores=1)
 qtestPerm <- quantro(p, groupFactor = pd$CellType, B = 1000)
 qtestPerm
 @
-
 
 
 

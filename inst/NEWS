@@ -15,4 +15,5 @@
 	- Updated version of R to 3.1.3
 * quantro version 1.1.4
 	- Saved and compressed FlowSorted.RData to pass BioC checks
-
+* quantro version 1.9.1 
+	- Updated flowSorted dataset and bumped quantro to version 1.9.1

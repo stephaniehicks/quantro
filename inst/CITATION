@@ -1,0 +1,12 @@
+bibentry(bibtype = "Article",
+           key = "quantro",
+           author = c(person(c("Stephanie", "C."), "Hicks"),
+                      person(c("Rafael", "A."), "Irizarry")),
+           title = "quantro: a data-driven approach to guide the choice of an appropriate normalization method",
+           journal = "Genome Biology",
+           year = "2015",
+           volume = "16",
+           number = "117",
+           pubmed = "26040460",
+	   header = "The quantro package is described in:")
+

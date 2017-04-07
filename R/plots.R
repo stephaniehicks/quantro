@@ -45,14 +45,14 @@ matdensity <- function(object, groupFactor = NULL, type = "l",
         min.object <- min(object[is.finite(object)], na.rm = TRUE)
         max.object <- max(object[is.finite(object)], na.rm = TRUE)
         densityMat <- apply(object, 2, function(z){
-            density(z, from = min.object, to = max.object, na.rm = TRUE)$y
+            stats::density(z, from = min.object, to = max.object, na.rm = TRUE)$y
         })
         x = seq(from=min.object, to=max.object, length.out = nrow(densityMat))
         list(densityMat = densityMat, x = x)
     }
     output <- getdensity(object)
 
-    palette(brewer.pal(brewer.n, brewer.name))
+    grDevices::palette(brewer.pal(brewer.n, brewer.name))
     col = brewer.pal(brewer.n, brewer.name)
     if(!is.null(groupFactor)){
         groupFactor <- as.factor(groupFactor)
@@ -61,7 +61,7 @@ matdensity <- function(object, groupFactor = NULL, type = "l",
         col = rep(col, ncol(object))
     }
 
-    matplot(x = output$x, output$densityMat, col = col, type = type, 
+    graphics::matplot(x = output$x, output$densityMat, col = col, type = type, 
             lty = lty, ...)
 }
 
@@ -112,11 +112,11 @@ matboxplot <- function (object, groupFactor, las = 3,
     objectordered <- object[, order(groupFactor)]
     groupFactorOrdered <- groupFactor[order(groupFactor)]
 
-    palette(brewer.pal(brewer.n, brewer.name))
+    grDevices::palette(brewer.pal(brewer.n, brewer.name))
     col = brewer.pal(brewer.n, brewer.name) 
     col = col[as.integer(groupFactorOrdered)]
         
-    boxplot(objectordered, las = las, col = col, ...)
+    graphics::boxplot(objectordered, las = las, col = col, ...)
 }
 
 

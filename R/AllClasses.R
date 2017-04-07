@@ -2,6 +2,7 @@
 setClassUnion("numericORlogical", c("numeric", "logical"))
 
 #' @title quantro
+#' @description This is the S4 class quantro container
 #'
 #' @exportClass quantro 
 #' 
@@ -149,11 +150,9 @@ setMethod("show", "quantro",
 quantro <- function(object, groupFactor = NULL, B = 0, qRange = NULL,
                     useMedianNormalized = TRUE, verbose = TRUE)
 { 
-    if(inherits(object, "eSet")){
-        if(is(object, "ExpressionSet")){ object <- exprs(object) }
-        if(is(object, "MethylSet")){ object <- getBeta(object, offset = 100) }
-    }
-
+    if(is(object, "ExpressionSet")){ object <- exprs(object) }
+    if(is(object, "MethylSet")){ object <- getBeta(object, offset = 100) }
+  
     if(is.null(groupFactor)){  
         stop("Must provide groupFactor to specify the group 
                 level information associated with each sample or 
@@ -171,7 +170,7 @@ quantro <- function(object, groupFactor = NULL, B = 0, qRange = NULL,
     groupLevels <- levels(groupFactor)
     K <- length(groupLevels)
     nk <- c(table(groupFactor))
-    objectMedians <- apply(object, 2, median)
+    objectMedians <- apply(object, 2, stats::median)
     objectMedians <- round(objectMedians, 7)
 
     if(length(unique(objectMedians)) == 1){
@@ -181,7 +180,7 @@ quantro <- function(object, groupFactor = NULL, B = 0, qRange = NULL,
                     No median normalization.")
         }
     } else {
-        anovaFit <- anova(lm(objectMedians ~ groupFactor))
+        anovaFit <- anova(stats::lm(objectMedians ~ groupFactor))
         anovaPval <- (anovaFit$`Pr(>F)`[1] < 0.05)
         if(verbose){
             if(anovaPval){ 
@@ -206,7 +205,7 @@ quantro <- function(object, groupFactor = NULL, B = 0, qRange = NULL,
     if(is.null(qRange)){
         Fnik = apply(objectNorm, 2, sort) 
     } else {
-        Fnik = apply(objectNorm, 2, quantile, probs = qRange, na.rm = TRUE)
+        Fnik = apply(objectNorm, 2, stats::quantile, probs = qRange, na.rm = TRUE)
     }
 
     Fndotk = sapply( groupLevels, function(x){ 
