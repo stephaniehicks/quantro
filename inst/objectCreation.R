@@ -24,7 +24,8 @@ pd <- pData(Mset)
 meth <- getMeth(Mset)
 unmeth <- getUnmeth(Mset)
 
-# Subset probes to speed up computation time for vignette and man pages
+# Subset probes to speed up computation time for vignette 
+# and man pages
 set.seed(123)
 subRows <- sample(seq_len(nrow(meth)), size = 1e4)
 meth <- meth[subRows,]
@@ -35,5 +36,6 @@ flowSorted <- MethylSet(Meth = meth, Unmeth = unmeth,
                         phenoData = AnnotatedDataFrame(pd))
 
 # Save MethylSet object to use in vignette and man pages
-save(flowSorted, file = "data/flowSorted.RData")
+save(flowSorted, file = "data/flowSorted.RData", compress='xz') 
+# need to compress to save space in bioC pkg
 

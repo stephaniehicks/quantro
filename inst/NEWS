@@ -17,3 +17,6 @@
 	- Saved and compressed FlowSorted.RData to pass BioC checks
 * quantro version 1.9.1 
 	- Updated flowSorted dataset and bumped quantro to version 1.9.1
+* quantro version 1.9.2
+	- Re-saved flowSorted dataset using compression and bumped quantro
+	  to version 1.9.2
