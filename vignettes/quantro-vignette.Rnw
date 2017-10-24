@@ -11,8 +11,9 @@
 \setlength{\parindent}{0pt}
 
 \title{The \texttt{quantro} user's guide}
-\author{Stephanie C. Hicks \texttt{shicks@jimmy.harvard.edu} \and
-Rafael A. Irizarry \texttt{rafa@jimmy.harvard.edu} }
+\author{Stephanie C. Hicks\thanks{\email{shicks@jimmy.harvard.edu}} and
+Rafael A. Irizarry\thanks{\email{rafa@jimmy.harvard.edu}} \\ 
+Dana-Farber Cancer Institute / Harvard T.H. Chan School of Public Health}
 
 \date{Modified: April 7, 2017.  Compiled: \today}
 
