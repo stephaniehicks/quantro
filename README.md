@@ -14,8 +14,9 @@ For help with the **quantro** R-package, there is a vignette available in the /v
 
 The R-package **quantro** can be [installed from the Bioconductor](http://www.bioconductor.org/packages/release/bioc/html/quantro.html)
 ```s
-source("http://bioconductor.org/biocLite.R")
-biocLite("quantro")
+if (!requireNamespace("BiocManager", quietly=TRUE))
+    install.packages("BiocManager")
+BiocManager::install("quantro")
 ```
 
 After installation, the package can be loaded into R.
