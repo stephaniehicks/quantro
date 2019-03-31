@@ -24,3 +24,6 @@
 	- Updated \author formatting in vignette
 * quantro version 1.15.1
 	- Updated maintainer email address
+* quantro version 1.17.1 
+  - Renamed vignette from quantro-vignette to just quantro
+  - Converged vignette from .Rnw to .Rmd

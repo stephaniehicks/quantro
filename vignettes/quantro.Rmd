@@ -1,0 +1,287 @@
+---
+title: "The quantro user's guide"
+author: 
+- name: Stephanie Hicks
+    affiliation: Johns Hopkins Bloomberg School of Public Health
+    email: shicks19@jhu.edu
+- name: Rafael Irizarry
+    affiliation: Dana-Farber Cancer Institute
+    email: rafa@jimmy.harvard.edu
+date: March 31, 2019
+package: quantro
+output: html_document
+bibliography: quantro.bib
+vignette: >
+    %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r style, echo = FALSE, results = 'asis'}
+BiocStyle::markdown()
+```
+
+<!--
+    % \VignetteEngine{knitr::knitr}
+    %\VignetteIndexEntry{The bodymapRat data user's guide}
+-->
+
+# Introduction
+
+Multi-sample normalization techniques such as quantile normalization 
+@Bolstad2003, @Irizarry2003 have become a standard and essential part of 
+analysis pipelines for high-throughput data. Although it was originally 
+developed for gene expression microarrays, it is now used across many 
+different high-throughput applications including genotyping arrays, DNA 
+Methylation, RNA Sequencing (RNA-Seq) and Chromatin Immunoprecipitation 
+Sequencing (ChIP-Seq). These techniques transform the original raw data to 
+remove unwanted technical variation. However, quantile normalization and other 
+global normalization methods rely on assumptions about the data generation 
+process that are not appropriate in some context. Until now, it has been left 
+to the researcher to check for the appropriateness of these assumptions. 
+
+Quantile normalization assumes that the statistical distribution of each 
+sample is the same. Normalization is achieved by forcing the observed 
+distributions to be the same and the average distribution, obtained by taking 
+the average of each quantile across samples, is used as the reference. This 
+method has worked very well in practice but note that when the assumptions are 
+not met, global changes in distribution, that may be of biological interest, 
+will be wiped out and features that are not different across samples can be 
+artificially induced.  These types of assumptions are justified in many 
+biomedical applications, for example in gene expression studies in which only 
+a minority of genes are expected to be differentially expressed. However, if, 
+for example, a substantially higher percentage of genes are expected to be 
+expressed in only one group of samples, it may not be appropriate to use 
+global adjustment methods. 
+
+The `quantro` R-package can be used to test for global differences 
+between groups of distributions which asses whether global normalization 
+methods such as quantile normalization should be applied. Our method uses 
+the raw unprocessed high-throughput data to test for global differences in 
+the distributions across a set of groups. The main function `quantro()` 
+will perform two tests: 
+
+1. An ANOVA to test if the medians of the distributions are different 
+across groups. Differences across groups could be attributed to unwanted 
+technical variation (such as batch effects) or real global biological 
+variation. This is a helpful step for the user to verify if there is any 
+technical variation unaccounted for. 
+
+2. A test for global differences between the distributions across groups 
+which returns a test statistic called `quantroStat`. This test 
+statistic is a ratio of two variances and is similar to the idea of ANOVA. 
+The main idea is to compare the variability of distributions within groups 
+relative to between groups. If the variability between groups is sufficiently 
+larger than the variability within groups, then this suggests global 
+adjustment methods may not be appropriate. As a default, we perform this test 
+on the median normalized data, but the user may change this option. 
+
+# Getting Started
+
+## Installation
+
+The R-package **quantro** can be [installed from the Bioconductor](http://www.bioconductor.org/packages/release/bioc/html/quantro.html)
+```{r install-quantro}
+if (!requireNamespace("BiocManager", quietly=TRUE))
+    install.packages("BiocManager")
+BiocManager::install("quantro")
+```
+
+## Load the package in R
+
+After installation, the package can be loaded into R.
+```{r lib-load, message=FALSE}
+library(quantro)
+```
+
+
+
+# Data
+
+## `flowSorted` Data Example
+
+To explore how to use `quantro()`, we use the 
+`FlowSorted.DLPFC.450k` data package in Bioconductor 
+@JaffeFlowSorted.  This data set contains raw data objects of 58 
+Illumina 450K DNA methylation microarrays, formatted as ``RGset` 
+objects. The samples represent two different cellular populations of brain 
+tissues on the same 29 individuals extracted using flow sorting.  For more 
+information on this data set, please see the FlowSorted.DLPFC.450k User's 
+Guide.  For the purposes of this vignette, a MethylSet object from the 
+`minfi` Bioconductor package  @Aryee2014 was created which is 
+a subset of the rows from the original `FlowSorted.DLPFC.450k` data 
+set. This `MethylSet` object is found in the /data folder and the script to 
+create the object is found in /inst.  
+
+Here we will explore the distributions of these two cellular populations of 
+brain tissue (`NeuN_pos` and `NeuN_neg`) and then test if there 
+are global differences in the distributions across groups. First, load the 
+MethylSet object (`flowSorted`) and compute the Beta values using 
+the function `getBeta()` in the `minfi` Bioconductor package. 
+We use an offset of 100 as this is the default used by Illumina. 
+
+```{r data-load, message=FALSE}
+library(minfi)
+data(flowSorted)
+p <- getBeta(flowSorted, offset = 100)
+pd <- pData(flowSorted)
+dim(p)
+head(pd)
+```
+
+## Plot distributions
+
+`quantro` contains two functions to view the distributions of the 
+samples of interest: `matdensity()` and `matboxplot()`. The function 
+`matdensity()` computes the density for each sample (columns) and 
+uses the `matplot()` function to plot all the densities. 
+`matboxplot()` orders and colors the samples by a group level variable. 
+These two functions use the `RColorBrewer` package and the brewer 
+palettes can be changed using the arguments `brewer.n` and 
+`brewer.name`. 
+
+The distributions of the two groups of cellular populations are shown here. 
+The `NeuN_neg` samples are colored in green and the `NeuN_pos` are 
+colored in red.  
+
+```{r plot-distributions-density, fig.height=5, fig.width=6}
+matdensity(p, groupFactor = pd$CellType, xlab = " ", ylab = "density",
+           main = "Beta Values", brewer.n = 8, brewer.name = "Dark2")
+legend('top', c("NeuN_neg", "NeuN_pos"), col = c(1, 2), lty = 1, lwd = 3)
+```
+
+```{r plot-distributions-boxplot, fig.height=5, fig.width=6}
+matboxplot(p, groupFactor = pd$CellType, xaxt = "n", main = "Beta Values")
+```
+
+
+# Using the `quantro()` function
+
+## Input for `quantro()`
+
+The `quantro()` function must have two objects as input: 
+
+1. An `object` which is a data frame or matrix with observations 
+(e.g. probes or genes) on the rows and samples as the columns. 
+
+2. A `groupFactor` which represents the group level information 
+about each sample. For example if the samples represent tumor and normal 
+samples, provide `quantro()` with a factor representing which columns 
+in the `object` are normal and tumor samples.
+
+## Running `quantro()`
+
+In this example, the groups we are interested in comparing are contained in 
+the `CellType` column in the `pd` dataset. To run the 
+`quantro()` function, input the data object and the object containing 
+the phenotypic data. Here we use the `flowSorted` data set as an 
+example. 
+
+```{r calculate-quantro1}
+qtest <- quantro(object = p, groupFactor = pd$CellType)
+qtest
+```
+
+The details related to the experiment can be extracted using the 
+`summary` accessor function:
+
+```{r quantro-summary}
+summary(qtest)
+```
+
+To asssess if the medians of the distributions different across groups, 
+we perform an ANOVA on the medians from the samples. Those results can be 
+found using `anova`:
+
+```{r quantro-medians}
+anova(qtest)
+```
+
+The full output can be seen The test statistic produced from 
+`quantro()` testing for global differences between distributions 
+is given by `quantroStat`: 
+
+```{r quantro-quantroStat}
+quantroStat(qtest)
+```
+
+
+## eSets
+
+`quantro()` also can accept objects that inherit `eSets`
+such as an `ExpressionSet` or `MethylSet`. The 
+`groupFactor` must still be provided.  
+
+```{r flowSorted-fullEx}
+is(flowSorted, "MethylSet")
+qtest <- quantro(flowSorted, groupFactor = pData(flowSorted)$CellType)
+qtest 
+```
+
+## Output from `quantro()`
+
+
+Elements in the S4 object from `quantro()` include: 
+
+Element | Description
+--------|------------
+`summary` | A list that contains (1) number of groups (`nGroups`), (2) total number of samples (`nTotSamples`) (3) number of samples in each group (`nSamplesinGroups`)
+`anova` | ANOVA to test if the average medians of the distributions are different across groups
+`MSbetween` | mean squared error between groups
+`MSwithin` | mean squared error within groups
+`quantroStat` | test statistic which is a ratio of the mean squared error between groups of distributions to the mean squared error within groups of distributions
+`quantroStatPerm` | If `B` is not equal to 0, then a permutation test was performed to assess the statistical significance of `quantroStat`. These are the test statistics resulting from the permuted samples
+`quantroPvalPerm` | If `B` is not equal to 0, then this is the $p$-value associated with the proportion of times the test statistics (`quantroStatPerm`) resulting from the permuted samples were larger than `quantroStat`
+
+
+# Assessing the statistical significance
+
+To assess statistical significance of the test statistic, we use 
+permutation testing.  We use the `foreach` package which distribute 
+the computations across multiple cross in a single machine or across 
+multiple machines in a cluster. The user must pick how many permutations 
+to perform where `B` is the number of permutations. At each 
+permutation of the samples, a test statistic is calculated. The proportion 
+of test statistics (`quantroStatPerm`) that are larger than the 
+`quantroStat` is reported as the `quantroPvalPerm`. To use 
+the `foreach` package, we first register a backend, in this case a 
+machine with 1 cores. 
+
+```{r quantro-parallel}
+library(doParallel)
+registerDoParallel(cores=1)
+qtestPerm <- quantro(p, groupFactor = pd$CellType, B = 1000)
+qtestPerm
+```
+
+
+# Visualizing the statistical significance from permutation tests
+
+If permutation testing was used (i.e. specifying `B` $>$ 0), then 
+there is a second function in the package called `quantroPlot()` 
+which will plot the test statistics of the permuted samples. The plot is 
+a histogram of the null test statistics `quantroStatPerm` from 
+`quantro()` and the red line is the observed test statistic 
+`quantroStat` from `quantro()`. 
+
+```{r quantro-plot, fig.height=5, fig.width=6}
+quantroPlot(qtestPerm)
+```
+
+Additional options in the `quantroPlot()` function include:
+
+Element | Description
+--------|-------------
+xLab | the x-axis label
+yLab | the y-axis label
+mainLab | title of the histogram
+binWidth | change the binwidth
+
+
+# SessionInfo
+
+```{r sessionInfo, results='markup'}
+sessionInfo()
+```

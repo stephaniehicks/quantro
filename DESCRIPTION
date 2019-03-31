@@ -1,9 +1,10 @@
 Package: quantro
 Title: A test for when to use quantile normalization
-Version: 1.17.0
-Date: 2018-08-30
-Author: Stephanie Hicks and Rafael Irizarry
-Maintainer: Stephanie Hicks <shicks19@jhu.edu>
+Version: 1.17.1
+Authors@R: c(
+    person("Stephanie", "Hicks", role = c("aut", "cre"), 
+            email = "shicks19@jhu.edu"),
+    person("Rafael", "Irizarry", role = "aut"))
 Imports:
     Biobase,
     minfi,
