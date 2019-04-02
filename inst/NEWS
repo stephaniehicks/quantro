@@ -27,3 +27,5 @@
 * quantro version 1.17.1 
   - Renamed vignette from quantro-vignette to just quantro
   - Converged vignette from .Rnw to .Rmd
+* quantro version 1.17.2 
+  - Fixed name of vignette

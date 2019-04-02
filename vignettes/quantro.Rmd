@@ -1,32 +1,28 @@
 ---
 title: "The quantro user's guide"
-author: 
-- name: Stephanie Hicks
-    affiliation: Johns Hopkins Bloomberg School of Public Health
-    email: shicks19@jhu.edu
+author:
+- name: Stephanie C. Hicks
+  affiliation: Johns Hopkins University
 - name: Rafael Irizarry
-    affiliation: Dana-Farber Cancer Institute
-    email: rafa@jimmy.harvard.edu
-date: March 31, 2019
+  affiliation: Dana-Farber Cancer Institute
+output:
+  BiocStyle::html_document:
+    toc_float: true
 package: quantro
-output: html_document
 bibliography: quantro.bib
-vignette: >
-    %\VignetteEncoding{UTF-8}
+vignette: |
+  %\VignetteIndexEntry{The quantro user's guide}
+  %\VignetteEngine{knitr::rmarkdown}
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r, echo=FALSE, results="hide", message=FALSE}
+require(knitr)
+opts_chunk$set(error=FALSE, message=FALSE, warning=FALSE)
 ```
 
-```{r style, echo = FALSE, results = 'asis'}
+```{r style, echo=FALSE, results='asis'}
 BiocStyle::markdown()
 ```
-
-<!--
-    % \VignetteEngine{knitr::knitr}
-    %\VignetteIndexEntry{The bodymapRat data user's guide}
--->
 
 # Introduction
 
