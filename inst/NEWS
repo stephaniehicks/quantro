@@ -31,3 +31,5 @@
   - Fixed name of vignette
 * quantro version 1.17.3
   - Removed quantro-vignette.pdf from inst/doc/ folder
+* quantro version 1.17.4
+  - Changed name of affilation for Hicks in vignette

@@ -2,7 +2,7 @@
 title: "The quantro user's guide"
 author:
 - name: Stephanie C. Hicks
-  affiliation: Johns Hopkins University
+  affiliation: Johns Hopkins Bloomberg School of Public Health
 - name: Rafael Irizarry
   affiliation: Dana-Farber Cancer Institute
 output:
