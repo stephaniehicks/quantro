@@ -29,3 +29,5 @@
   - Converged vignette from .Rnw to .Rmd
 * quantro version 1.17.2 
   - Fixed name of vignette
+* quantro version 1.17.3
+  - Removed quantro-vignette.pdf from inst/doc/ folder

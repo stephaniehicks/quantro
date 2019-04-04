@@ -9,6 +9,8 @@ output:
   BiocStyle::html_document:
     toc_float: true
 package: quantro
+abstract: |
+ A test for when to use global normalization methods, such as quantile normalization.
 bibliography: quantro.bib
 vignette: |
   %\VignetteIndexEntry{The quantro user's guide}
