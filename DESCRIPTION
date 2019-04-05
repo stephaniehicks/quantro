@@ -1,10 +1,12 @@
 Package: quantro
 Title: A test for when to use quantile normalization
-Version: 1.17.4
+Version: 1.17.5
 Authors@R: c(
     person("Stephanie", "Hicks", role = c("aut", "cre"), 
-            email = "shicks19@jhu.edu"),
-    person("Rafael", "Irizarry", role = "aut"))
+            email = "shicks19@jhu.edu", 
+            comment = c(ORCID = "0000-0002-7858-0231")),
+    person("Rafael", "Irizarry", role = "aut", 
+            comment = c(ORCID = "0000-0002-3944-4309")))
 Imports:
     Biobase,
     minfi,
