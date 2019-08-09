@@ -209,7 +209,7 @@ quantro <- function(object, groupFactor = NULL, B = 0, qRange = NULL,
     }
 
     Fndotk = sapply( groupLevels, function(x){ 
-        rowMeans(Fnik[, which(groupFactor %in% x)]) 
+        rowMeans(Fnik[, which(groupFactor %in% x), drop = FALSE]) 
     } )
     
     Fndotdot = rowMeans(Fnik)
