@@ -6,8 +6,14 @@
 \alias{quantro}
 \title{quantro}
 \usage{
-quantro(object, groupFactor = NULL, B = 0, qRange = NULL,
-  useMedianNormalized = TRUE, verbose = TRUE)
+quantro(
+  object,
+  groupFactor = NULL,
+  B = 0,
+  qRange = NULL,
+  useMedianNormalized = TRUE,
+  verbose = TRUE
+)
 }
 \arguments{
 \item{object}{an object which is inherited from an 

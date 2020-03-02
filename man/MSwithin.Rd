@@ -3,9 +3,7 @@
 \docType{methods}
 \name{MSwithin}
 \alias{MSwithin}
-\alias{MSwithin}
 \alias{MSwithin.quantro}
-\alias{MSwithin,quantro-method}
 \alias{MSwithin,quantro-method}
 \title{Accessors for the 'MSwithin' slot of a quantro object.}
 \usage{

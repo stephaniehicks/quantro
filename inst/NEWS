@@ -37,3 +37,5 @@
   - Added orcid for authors
 * quantro version 1.19.1
   - Added `drop = FALSE` to allow edge case of 1 sample in a group
+* quantro version 1.21.1
+  - Added `drop = FALSE` to allow edge case of 1 sample in a group (again)

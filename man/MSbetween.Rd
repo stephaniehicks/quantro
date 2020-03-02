@@ -3,9 +3,7 @@
 \docType{methods}
 \name{MSbetween}
 \alias{MSbetween}
-\alias{MSbetween}
 \alias{MSbetween.quantro}
-\alias{MSbetween,quantro-method}
 \alias{MSbetween,quantro-method}
 \title{Accessors for the 'MSbetween' slot of a quantro object.}
 \usage{

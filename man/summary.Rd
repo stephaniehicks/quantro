@@ -3,9 +3,7 @@
 \docType{methods}
 \name{summary}
 \alias{summary}
-\alias{summary}
 \alias{summary.quantro}
-\alias{summary,quantro-method}
 \alias{summary,quantro-method}
 \title{Accessors for the 'summary' slot of a quantro object.}
 \usage{

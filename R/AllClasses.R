@@ -219,7 +219,7 @@ quantro <- function(object, groupFactor = NULL, B = 0, qRange = NULL,
 
     withinDiff <- do.call("cbind", lapply(groupLevels, function(x){
         Fnik[, which(groupFactor %in% x) ] - 
-            rowMeans(Fnik[, which(groupFactor %in% x) ]) }))
+            rowMeans(Fnik[, which(groupFactor %in% x), drop = FALSE]) }))
 
     withinDiff <- colMeans((withinDiff)^2)
     MSe <- sum(withinDiff) / (nT - K)	

@@ -4,8 +4,14 @@
 \alias{quantroPlot}
 \title{Plot results from \code{quantro} function.}
 \usage{
-quantroPlot(object, savePlot = FALSE, xLab = NULL, yLab = NULL,
-  mainLab = NULL, binWidth = NULL)
+quantroPlot(
+  object,
+  savePlot = FALSE,
+  xLab = NULL,
+  yLab = NULL,
+  mainLab = NULL,
+  binWidth = NULL
+)
 }
 \arguments{
 \item{object}{a quantro object from \code{quantro}}

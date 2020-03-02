@@ -4,8 +4,15 @@
 \alias{matdensity}
 \title{Density plots of columns in a matrix}
 \usage{
-matdensity(object, groupFactor = NULL, type = "l", lty = 1,
-  brewer.n = 8, brewer.name = "Dark2", ...)
+matdensity(
+  object,
+  groupFactor = NULL,
+  type = "l",
+  lty = 1,
+  brewer.n = 8,
+  brewer.name = "Dark2",
+  ...
+)
 }
 \arguments{
 \item{object}{object an object which is inherited from an 

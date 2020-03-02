@@ -3,9 +3,7 @@
 \docType{methods}
 \name{quantroPvalPerm}
 \alias{quantroPvalPerm}
-\alias{quantroPvalPerm}
 \alias{quantroPvalPerm.quantro}
-\alias{quantroPvalPerm,quantro-method}
 \alias{quantroPvalPerm,quantro-method}
 \title{Accessors for the 'quantroPvalPerm' slot of a quantro object.}
 \usage{

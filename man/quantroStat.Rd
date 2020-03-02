@@ -3,9 +3,7 @@
 \docType{methods}
 \name{quantroStat}
 \alias{quantroStat}
-\alias{quantroStat}
 \alias{quantroStat.quantro}
-\alias{quantroStat,quantro-method}
 \alias{quantroStat,quantro-method}
 \title{Accessors for the 'quantroStat' slot of a quantro object.}
 \usage{

@@ -4,8 +4,14 @@
 \alias{matboxplot}
 \title{Box plots of columns in a matrix}
 \usage{
-matboxplot(object, groupFactor, las = 3, brewer.n = 8,
-  brewer.name = "Dark2", ...)
+matboxplot(
+  object,
+  groupFactor,
+  las = 3,
+  brewer.n = 8,
+  brewer.name = "Dark2",
+  ...
+)
 }
 \arguments{
 \item{object}{object an object which is inherited from an 

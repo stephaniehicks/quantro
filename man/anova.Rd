@@ -3,9 +3,7 @@
 \docType{methods}
 \name{anova}
 \alias{anova}
-\alias{anova}
 \alias{anova.quantro}
-\alias{anova,quantro-method}
 \alias{anova,quantro-method}
 \title{Accessors for the 'anova' slot of a quantro object.}
 \usage{
