@@ -102,13 +102,15 @@ library(quantro)
 
 To explore how to use `quantro()`, we use the 
 `FlowSorted.DLPFC.450k` data package in Bioconductor 
-@JaffeFlowSorted.  This data set contains raw data objects of 58 
-Illumina 450K DNA methylation microarrays, formatted as ``RGset` 
+@JaffeFlowSorted. 
+The data in this package originally came from @Guintivano2013. 
+This data set in `FlowSorted.DLPFC.450k` contains raw data objects of 58 
+Illumina 450K DNA methylation microarrays, formatted as `RGset` 
 objects. The samples represent two different cellular populations of brain 
 tissues on the same 29 individuals extracted using flow sorting.  For more 
-information on this data set, please see the FlowSorted.DLPFC.450k User's 
-Guide.  For the purposes of this vignette, a MethylSet object from the 
-`minfi` Bioconductor package  @Aryee2014 was created which is 
+information on this data set, please see the `FlowSorted.DLPFC.450k` User's 
+Guide.For the purposes of this vignette, a MethylSet object from the 
+`minfi` Bioconductor package @Aryee2014 was created which is 
 a subset of the rows from the original `FlowSorted.DLPFC.450k` data 
 set. This `MethylSet` object is found in the /data folder and the script to 
 create the object is found in /inst.  
