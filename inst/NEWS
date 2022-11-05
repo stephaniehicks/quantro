@@ -42,3 +42,5 @@
 * quantro version 1.27.1
   - Added `rmarkdown` package to Suggests in Description to fix changes in knitr
   - Added the Guintivano et al. 2013 reference for the `FlowSorted.DLPFC.450k` package used in the vignette. 
+* Quattro version 1.33.1
+  - Changed license from GPL (>=3) to GPL-3
